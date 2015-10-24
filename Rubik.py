@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Rubik.py                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nsavry <nsavry@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/10/20 14:44:29 by nsavry            #+#    #+#              #
-#    Updated: 2015/10/23 19:29:56 by nsavry           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 import sys
 import Cube
 
@@ -30,3 +18,7 @@ for av in args:
 		quit()
 print ""
 test.display()
+if test.yellow_cross() == True:
+	print "true"
+else:
+	print "false"

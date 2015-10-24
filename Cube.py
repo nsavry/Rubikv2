@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Cube.py                                            :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nsavry <nsavry@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/10/20 15:45:20 by nsavry            #+#    #+#              #
-#    Updated: 2015/10/23 20:52:34 by nsavry           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 import sys
 
 class Cube:
@@ -79,3 +67,33 @@ class Cube:
 						self.cube[i][tab[2]] = self.cube[i][tab[1]]
 						self.cube[i][tab[1]] = -tmp
 				i += 1
+
+	def resolved(self):
+		cube_resolved = Cube()
+		cube_resolved.init()
+		n_edge = 12
+		n_corner = 8
+		for edge in self.edge:
+			for res_edge in cube_resolved.edge:
+				if edge == res_edge:
+					n_edge -= 1
+		for corner in self.corner:
+			for res_corner in cube_resolved.corner:
+				if corner == res_corner:
+					n_corner -= 1
+		if n_corner != 0 and n_edge != 0:
+			return False
+		else:
+			return True
+
+	def yellow_cross(self):
+		n_edge = 4
+		for edge in self.edge:
+			if edge == [0,-4,1] or edge == [0,-4,-6]:
+				n_edge -= 1
+			if edge == [3,-4,0] or edge == [-5,-4,0]:
+				n_edge -= 1
+		if n_edge != 0:
+			return False
+		else:
+			return True
