@@ -18,11 +18,12 @@ class Cube:
 	
 	def display(self):
 		for i in range(-1,2):
-			sys.stdout.write("            ")
+			sys.stdout.write("              ")
 			for j in range(-1,2):
 				self.display_color(self.find_sticker(j, 1, i)[1])
 			print "\n"
 		for j in range(-1,2):
+			sys.stdout.write("  ")
 			for i in range(-1,2):
 				self.display_color(self.find_sticker(-1, -j, i)[0])
 			for i in range(-1,2):
@@ -33,7 +34,7 @@ class Cube:
 				self.display_color(self.find_sticker(-i, -j, -1)[2])
 			print "\n"
 		for i in range(-1,2):
-			sys.stdout.write("            ")
+			sys.stdout.write("              ")
 			for j in range(-1,2):
 				self.display_color(self.find_sticker(j, -1, -i)[1])
 			print "\n"
@@ -89,11 +90,30 @@ class Cube:
 	def yellow_cross(self):
 		n_edge = 4
 		for edge in self.edge:
-			if edge == [0,-4,1] or edge == [0,-4,-6]:
-				n_edge -= 1
-			if edge == [3,-4,0] or edge == [-5,-4,0]:
+			if edge == [0,-4,1] or edge == [0,-4,-6] or edge == [3,-4,0] or edge == [-5,-4,0]:
 				n_edge -= 1
 		if n_edge != 0:
 			return False
-		else:
-			return True
+		return True
+	
+	def first_ring(self):
+		if self.yellow_cross == False:
+			return False
+		n_corner = 4
+		for corner in self.corner:
+			if corner == [3,-4,1] or corner == [-5,-4,1] or corner == [3,-4,-6] or corner == [-5,-4,-6]:
+				n_corner -= 1
+		if n_corner != 0:
+			return False
+		return True
+
+	def second_ring(self):
+		if self.first_ring == False:
+			return False
+		n_edge = 4
+		for edge in self.edge:
+			if edge == [3,0,1] or edge == [3,0,-6] or edge == [-5,0,1] or edge == [-5,0,-6]:
+				n_edge -= 1
+		if n_edge != 0:
+			return False
+		return True
