@@ -97,7 +97,7 @@ class Cube:
 		return True
 	
 	def first_ring(self):
-		if self.yellow_cross == False:
+		if self.yellow_cross() == False:
 			return False
 		n_corner = 4
 		for corner in self.corner:
@@ -108,7 +108,7 @@ class Cube:
 		return True
 
 	def second_ring(self):
-		if self.first_ring == False:
+		if self.first_ring() == False:
 			return False
 		n_edge = 4
 		for edge in self.edge:
